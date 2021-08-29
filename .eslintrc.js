@@ -30,9 +30,6 @@ module.exports = {
     ],
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -43,7 +40,13 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    "import/no-named-as-default": 0
+    'import/parsers': [
+      0,
+      {
+        '@typescript-eslint/parser': ['.ts', '.tsx'],
+      },
+    ],
+    'import/no-named-as-default': 0,
   },
   settings: {
     'import/resolver': {
