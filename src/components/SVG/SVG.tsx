@@ -5,11 +5,11 @@ import './svg.scss';
 type Dot = Array<number>;
 type Data = Array<Dot>;
 const data = [
-  [10, 200, 2],
-  [20, 20, 4],
-  [25, 60, 55],
-  [30, 400, 5],
-  [33, 300, 23],
+  [10, 200, 22],
+  [20, 0, 42],
+  [30, 60, 55],
+  [35, 400, 5],
+  [40, 300, 23],
   [45, 780, 123],
   [70, 203, 213],
   [79, 890, 123],
@@ -35,8 +35,8 @@ export const SVG: FC = () => {
   const height = 100;
   const chartsHeight = height - 20;
   const chartsWidth = width - 0;
-  const strokeWidth = 2;
-
+  const strokeWidth = 1;
+  const padding = 30;
   const onePercentInPixel = ((height - strokeWidth) / 100) * 100;
   const widthPixel = width * 2;
   const heightPixel = height * 2;
@@ -50,19 +50,23 @@ export const SVG: FC = () => {
   const minInArray = (array: Dot) => {
     return Math.min(...array);
   };
-  const maxPercent = maxInArray(data.map((el) => el[1]));
-  const minPercent = minInArray(data.map((el) => el[1]));
 
   const maxXCoords = maxInArray(x);
 
   const renderDotX = (xCoords: Dot): number[] => {
-    const minX = minInArray(xCoords);
-    console.log(minX / maxXCoords);
+    const indent = xCoords[0] + padding;
+    console.log(xCoords[0] + padding);
 
-    return xCoords.map(
-      (el) =>
-        Math.abs((el - minX) / maxXCoords) * (chartsWidth - strokeWidth / 2),
-    );
+    return xCoords.map((el) => {
+      console.log(Math.abs(el - indent));
+
+      return (
+        Math.abs(
+          (el - xCoords[0] + padding) / (maxXCoords - xCoords[0] + padding),
+        ) *
+        (chartsWidth - strokeWidth / 2)
+      );
+    });
   };
 
   const defineLinePositions = (xCoords: Dot, arrayYCoords: Data) => {
@@ -143,7 +147,7 @@ export const SVG: FC = () => {
         </>
       ))}
       {lineMarking.map((line, ind) => (
-        <PathLine dots={line} color={color[ind]} />
+        <PathLine dots={line} color={color[ind]} width={2} />
       ))}
     </svg>
   );
