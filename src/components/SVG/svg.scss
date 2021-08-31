@@ -1,0 +1,19 @@
+$grey : #838F9E;
+
+.svg{
+ box-sizing:border-box;
+ position: absolute;
+ left: 100px;
+ top:100px;
+ background-color: rgb(173, 252, 252);
+
+ &__line{
+   stroke: gray;
+ }
+ &__insert-border{
+    stroke: $grey  ;
+ }
+ &__text{
+  font-size: 4px;
+ }
+}
