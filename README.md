@@ -1,6 +1,6 @@
 # Chart SVG
 
-NTCN
+NTCNss
 
 Генератор SVG диаграмм
 
